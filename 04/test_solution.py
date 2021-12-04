@@ -1,4 +1,4 @@
-from solution import part_1
+from solution import part_1, part_2
 
 input_data = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
@@ -25,3 +25,8 @@ input_data = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,
 def test_part_1():
     calc_part_1 = part_1(input_data)
     assert calc_part_1 == 4512
+
+
+def test_part_2():
+    calc_part_2 = part_2(input_data)
+    assert calc_part_2 == 1924
