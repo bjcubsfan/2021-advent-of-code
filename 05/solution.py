@@ -29,27 +29,27 @@ def mark_grid(part, horizontal_lines, vertical_lines, diagonal_lines, max_x, max
     if part == 1:
         return grid
     elif part == 2:
-        #print(60 * "*")
+        # print(60 * "*")
         for line in diagonal_lines:
             c1, c2 = line
             if c2[0] > c1[0]:
                 c2, c1 = c1, c2
             if c1[1] > c2[1]:
-                #print(f"c1 > {c1} {c2}")
+                # print(f"c1 > {c1} {c2}")
                 while c1 != c2:
                     grid[c1[0], c1[1]] += 1
-                    #print(f"marked {c1}")
-                    c1 = (c1[0] - 1,  c1[1] - 1)
+                    # print(f"marked {c1}")
+                    c1 = (c1[0] - 1, c1[1] - 1)
                 grid[c1[0], c1[1]] += 1
-                #print(f"marked {c1}")
+                # print(f"marked {c1}")
             elif c2[1] > c1[1]:
-                #print(f"c2 > {c1} {c2}")
+                # print(f"c2 > {c1} {c2}")
                 while c1 != c2:
                     grid[c1[0], c1[1]] += 1
-                    #print(f"marked {c1}")
-                    c1 = (c1[0] -1, c1[1] +1)
+                    # print(f"marked {c1}")
+                    c1 = (c1[0] - 1, c1[1] + 1)
                 grid[c1[0], c1[1]] += 1
-                #print(f"marked {c1}")
+                # print(f"marked {c1}")
         return grid
 
 
