@@ -16,6 +16,7 @@ def test_part_1():
     calc_part_1 = part_1(input_data)
     assert calc_part_1 == 5
 
+
 def test_part_2():
     calc_part_2 = part_2(input_data)
-    assert calc_part_2 == 20
+    assert calc_part_2 == 12
