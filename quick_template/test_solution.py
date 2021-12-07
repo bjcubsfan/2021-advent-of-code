@@ -5,7 +5,7 @@ input_data = """"""
 
 def test_part_1():
     calc_part_1 = part_1(input_data)
-    assert part_1 == 10
+    assert calc_part_1 == 10
 
 def test_part_2():
     calc_part_2 = part_2(input_data)

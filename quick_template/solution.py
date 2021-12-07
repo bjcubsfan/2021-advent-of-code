@@ -11,7 +11,7 @@ def part_1(input_data):
         line = line.strip()
     return answer
 
-def part_1(input_data):
+def part_2(input_data):
     input_data = input_data.strip()
     answer = None
     for line in input_data.split("\n"):
