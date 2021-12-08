@@ -34,6 +34,7 @@ def decode(patterns):
     5 has abdfg
     2 has acdeg
     """
+    #print("*" * 60)
     patterns = [set(pattern) for pattern in patterns]
     by_digit = dict()
     by_segment = dict()
@@ -62,6 +63,7 @@ def decode(patterns):
         if len(pattern) == 6:
             if len(orig_cf & pattern) != 2:
                 by_digit[6] = pattern
+                #print(f"got 6 as {pattern}")
     # I know c b/c it's the only one not in 6
     by_segment['c'] = by_digit[8] - by_digit[6]
     # I know 5 b/c it's the only 5 segment w/o c
@@ -78,22 +80,25 @@ def decode(patterns):
     by_segment['e'] = by_digit[2] - by_digit[3]
     # I know f is 1 - c
     by_segment['f'] = by_digit[1] - by_segment['c']
-    # I know 0 b/c it's the 6 digit with e
+    # I know 9 b/c it's the 6 segment without e
     for pattern in patterns:
         if len(pattern) == 6:
-            if len(by_segment['e'] & pattern) == 1:
-                by_digit[0] = pattern
+            if len(by_segment['e'] & pattern) == 0:
+                by_digit[9] = pattern
+                #print(f"got 9 as {pattern}")
     # I know 9 is the last 6 segment
     for pattern in patterns:
         if len(pattern) == 6:
-            if pattern != by_digit[0] and pattern != by_digit[6]:
-                by_digit[9] = pattern
+            if pattern != by_digit[9] and pattern != by_digit[6]:
+                by_digit[0] = pattern
+                #print(f"got 0 as {pattern}")
     if len(by_digit) != 10:
         import IPython; IPython.embed()
     decoder = dict()
     for digit in sorted(by_digit):
         pattern = by_digit[digit]
         decoder[''.join(sorted(pattern))] = str(digit)
+    #print()
     return decoder
 
 #   segments I know  numbers I know
