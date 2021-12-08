@@ -19,8 +19,9 @@ def part_1(input_data):
                 or len(output) == 3  # 7
                 or len(output) == 7  # 8
             ):
-                answer +=1
+                answer += 1
     return answer
+
 
 def decode(patterns):
     """
@@ -34,7 +35,7 @@ def decode(patterns):
     5 has abdfg
     2 has acdeg
     """
-    #print("*" * 60)
+    # print("*" * 60)
     patterns = [set(pattern) for pattern in patterns]
     by_digit = dict()
     by_segment = dict()
@@ -48,7 +49,7 @@ def decode(patterns):
         elif len(pattern) == 7:  # 8
             by_digit[8] = pattern
     # I know 1 & 7, the uncommon between them is a so:
-    by_segment['a'] = by_digit[7] - by_digit[1]
+    by_segment["a"] = by_digit[7] - by_digit[1]
     # I know 1, so those are c & f
     orig_cf = by_digit[1]
     # I know 3 is only 5 segment with c & f, so I know d (3)
@@ -57,19 +58,19 @@ def decode(patterns):
             if len(orig_cf & pattern) == 2:
                 by_digit[3] = pattern
     # I know b is is only segment in 4 but not 3
-    by_segment['b'] = by_digit[4] - by_digit[3]
+    by_segment["b"] = by_digit[4] - by_digit[3]
     # I know 6 b/c it's the only 6 segment without orig_cf
     for pattern in patterns:
         if len(pattern) == 6:
             if len(orig_cf & pattern) != 2:
                 by_digit[6] = pattern
-                #print(f"got 6 as {pattern}")
+                # print(f"got 6 as {pattern}")
     # I know c b/c it's the only one not in 6
-    by_segment['c'] = by_digit[8] - by_digit[6]
+    by_segment["c"] = by_digit[8] - by_digit[6]
     # I know 5 b/c it's the only 5 segment w/o c
     for pattern in patterns:
         if len(pattern) == 5:
-            if len(pattern & by_segment['c']) == 0:
+            if len(pattern & by_segment["c"]) == 0:
                 by_digit[5] = pattern
     # I know 2 b/c it's the only 5 segment left
     for pattern in patterns:
@@ -77,29 +78,32 @@ def decode(patterns):
             if by_digit[3] != pattern and by_digit[5] != pattern:
                 by_digit[2] = pattern
     # I know ie is segment from 2 - 3
-    by_segment['e'] = by_digit[2] - by_digit[3]
+    by_segment["e"] = by_digit[2] - by_digit[3]
     # I know f is 1 - c
-    by_segment['f'] = by_digit[1] - by_segment['c']
+    by_segment["f"] = by_digit[1] - by_segment["c"]
     # I know 9 b/c it's the 6 segment without e
     for pattern in patterns:
         if len(pattern) == 6:
-            if len(by_segment['e'] & pattern) == 0:
+            if len(by_segment["e"] & pattern) == 0:
                 by_digit[9] = pattern
-                #print(f"got 9 as {pattern}")
+                # print(f"got 9 as {pattern}")
     # I know 9 is the last 6 segment
     for pattern in patterns:
         if len(pattern) == 6:
             if pattern != by_digit[9] and pattern != by_digit[6]:
                 by_digit[0] = pattern
-                #print(f"got 0 as {pattern}")
+                # print(f"got 0 as {pattern}")
     if len(by_digit) != 10:
-        import IPython; IPython.embed()
+        import IPython
+
+        IPython.embed()
     decoder = dict()
     for digit in sorted(by_digit):
         pattern = by_digit[digit]
-        decoder[''.join(sorted(pattern))] = str(digit)
-    #print()
+        decoder["".join(sorted(pattern))] = str(digit)
+    # print()
     return decoder
+
 
 #   segments I know  numbers I know
 #   a X            | 0        |
@@ -112,6 +116,7 @@ def decode(patterns):
 #                  | 7 X      |
 #                  | 8 X      |
 #                  | 9        |
+
 
 def part_2(input_data):
     """1, 4, 7, 8 use a unique number of segments
@@ -166,11 +171,14 @@ def part_2(input_data):
         outputs = [sorted(output) for output in outputs]
         decoder = decode(patterns)
         try:
-            decoded = [decoder[''.join(output)] for output in outputs]
+            decoded = [decoder["".join(output)] for output in outputs]
         except KeyError:
-            import IPython; IPython.embed()
-        total += int(''.join(decoded))
+            import IPython
+
+            IPython.embed()
+        total += int("".join(decoded))
     return total
+
 
 def main():
     with open("input") as input_file:

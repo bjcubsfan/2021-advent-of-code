@@ -14,9 +14,11 @@ bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbg
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce"""
 
+
 def test_part_1():
     calc_part_1 = part_1(input_data_2)
     assert calc_part_1 == 26
+
 
 @pytest.mark.parametrize(
     "input_data, expected",
