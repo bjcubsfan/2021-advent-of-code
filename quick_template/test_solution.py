@@ -1,4 +1,3 @@
-import pytest
 from solution import part_1, part_2
 
 input_data = """"""
