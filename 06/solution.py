@@ -32,18 +32,11 @@ def part_1(input_data, days):
     answer = simulate_days(fish_map, int(days))
     return answer
 
-def part_2(input_data):
-    input_data = input_data.strip()
-    answer = None
-    for line in input_data.split("\n"):
-        line = line.strip()
-    return answer
-
 def main():
     with open("input") as input_file:
         input_data = input_file.read()
     print(part_1(input_data, 80))
-    print(part_2(input_data))
+    print(part_1(input_data, 256))
 
 
 if __name__ == "__main__":
